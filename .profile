@@ -29,6 +29,10 @@ if [ -d "$HOME/Dokumente/Shellscripts" ] ; then
 	PATH="$PATH:$HOME/Dokumente/Shellscripts"
 fi
 
-if [ -d "$HOME/Dokumente/Shellscripts" ] ; then
+if [ -d "$HOME/.composer/vendor/bin" ] ; then
 	PATH="$PATH:$HOME/.composer/vendor/bin"
+fi
+
+if [ -d "$HOME/.local/bin" ]; then
+    PATH="$HOME/.local/bin:$PATH"
 fi
