@@ -35,17 +35,11 @@ local return_code="%(?..%{$PR_RED%}%? ↵%{$PR_NO_COLOR%})"
 local user_host='${PR_USER}${PR_CYAN}@${PR_HOST}'
 local current_dir='%{$PR_BOLD$PR_BLUE%}%~%{$PR_NO_COLOR%}'
 local git_branch='$(git_prompt_info)%{$PR_NO_COLOR%}'
-
-zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
-zstyle ':vcs_info:*' formats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
-zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
-precmd () { vcs_info }
-vcs_status='${vcs_info_msg_0_}'
-
+local svn_branch='$(svn_prompt_info)%{$PR_NO_COLOR%}'
 
 
 #PROMPT="${user_host} ${current_dir} ${rvm_ruby} ${git_branch}$PR_PROMPT "
-PROMPT="╭─${user_host} ${current_dir} ${vcs_status}⌚ %{$fg_bold[red]%}%*%{$reset_color%} 
+PROMPT="╭─${user_host} ${current_dir} ${svn_branch}${git_branch}⌚ %{$fg_bold[red]%}%*%{$reset_color%}
 ╰─$PR_PROMPT "
 RPS1="${return_code}"
 
