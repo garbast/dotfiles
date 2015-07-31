@@ -14,11 +14,16 @@ eval PR_BOLD="%{$terminfo[bold]%}"
 
 # Check the UID
 if [[ $UID -ne 0 ]]; then # normal user
-  eval PR_USER='${PR_GREEN}%n${PR_NO_COLOR}'
-  eval PR_USER_OP='${PR_GREEN}%#${PR_NO_COLOR}'
+  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+    eval PR_USER='${PR_GREEN}%n${PR_NO_COLOR}${PR_CYAN}@${PR_NO_COLOR}'
+    eval PR_USER_OP='${PR_GREEN}%#${PR_NO_COLOR}'
+  else
+    eval PR_USER=''
+    eval PR_USER_OP=''
+  fi
   local PR_PROMPT='$PR_NO_COLOR➤ $PR_NO_COLOR'
 else # root
-  eval PR_USER='${PR_RED}%n${PR_NO_COLOR}'
+  eval PR_USER='${PR_RED}%n${PR_NO_COLOR}${PR_CYAN}@${PR_NO_COLOR}'
   eval PR_USER_OP='${PR_RED}%#${PR_NO_COLOR}'
   local PR_PROMPT='$PR_RED➤ $PR_NO_COLOR'
 fi
@@ -32,7 +37,7 @@ fi
 
 local return_code="%(?..%{$PR_RED%}%? ↵%{$PR_NO_COLOR%})"
 
-local user_host='${PR_USER}${PR_CYAN}@${PR_HOST}'
+local user_host='${PR_USER}${PR_HOST}'
 local current_dir='%{$PR_BOLD$PR_BLUE%}%~%{$PR_NO_COLOR%}'
 local git_branch='$(git_prompt_info)%{$PR_NO_COLOR%}'
 local svn_branch='$(svn_prompt_info)%{$PR_NO_COLOR%}'
