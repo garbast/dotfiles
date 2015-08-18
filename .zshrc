@@ -38,6 +38,9 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 source ~/.antigen.zsh
 
+DEFAULT_USER=sebastian
+SVN_SHOW_BRANCH="true"
+
 antigen use oh-my-zsh
 
 antigen bundles <<EOBUNDLES
@@ -45,12 +48,10 @@ antigen bundles <<EOBUNDLES
 
 	git
 	svn
-	
+
 	sublime
 	ssh-agent
 EOBUNDLES
-
-DEFAULT_USER=sebastian
 
 # Install powerline font for agnoster icons
 # http://askubuntu.com/questions/283908/how-can-i-install-and-use-powerline-plugin
