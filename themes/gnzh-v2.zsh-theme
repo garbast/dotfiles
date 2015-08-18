@@ -49,4 +49,6 @@ PROMPT="╭─${user_host} ${current_dir} ${svn_branch}${git_branch}⌚ %{$fg_bo
 RPS1="${return_code}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$PR_YELLOW%}‹"
+ZSH_THEME_SVN_PROMPT_PREFIX="%{$PR_YELLOW%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$PR_NO_COLOR%}"
+ZSH_THEME_SVN_PROMPT_SUFFIX="› %{$PR_NO_COLOR%}"
