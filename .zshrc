@@ -36,6 +36,8 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+fpath=($HOME/.dotfile/functions $fpath)
+
 source ~/.antigen.zsh
 
 DEFAULT_USER=sebastian
@@ -51,6 +53,9 @@ antigen bundles <<EOBUNDLES
 
 	sublime
 	ssh-agent
+
+	zsh-users/zsh-syntax-highlighting
+	zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
 EOBUNDLES
 
 # Install powerline font for agnoster icons
