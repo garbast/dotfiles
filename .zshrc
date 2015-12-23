@@ -48,11 +48,14 @@ antigen use oh-my-zsh
 antigen bundles <<EOBUNDLES
 	command-not-found
 
+	common-aliases
+
 	git
 	svn
 
 	sublime
 	ssh-agent
+	rsync
 
 	zsh-users/zsh-syntax-highlighting
 	zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
