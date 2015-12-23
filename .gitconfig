@@ -75,6 +75,7 @@
 	excludesfile = /home/sebastian/.gitignore_global
 	editor = vim
 	filemode = false
+	autocrlf = input
 
 [apply]
 	whitespace = fix
