@@ -93,3 +93,13 @@ alias svn_tagpatch='echo "Commit Message:" && read COMMIT_MESSAGE && svn cp ^/tr
 alias svn_tagminor='echo "Commit Message:" && read COMMIT_MESSAGE && svn cp ^/trunk ^/tags/"$(svn_lasttag | awk -F. '"'"'{print $1"."$2+1".0"}'"'"')" -m "${COMMIT_MESSAGE}" && echo "created: $(svn_lasttag)"'
 alias svn_tagmajor='echo "Commit Message:" && read COMMIT_MESSAGE && svn cp ^/trunk ^/tags/"$(svn_lasttag | awk -F. '"'"'{print $1+1".0.0"}'"'"')" -m "${COMMIT_MESSAGE}" && echo "created: $(svn_lasttag)"'
 alias svn_branch='BRANCH_NAME=""; while [ ! -z "$(svn ls ^/branches/${BRANCH_NAME} 2>/dev/null)" ]; do echo "Branch Name:" && read BRANCH_NAME; done ; echo "Commit Message:" && read COMMIT_MESSAGE && svn cp ^/trunk ^/branches/"${BRANCH_NAME}" -m "${COMMIT_MESSAGE}" && svn switch ^/branches/"${BRANCH_NAME}"'
+
+alias git_add='for file in $(git status -s | egrep "^\?\?" | awk '"'"'{print $2}'"'"'); do git add $file; done'
+alias git_del='for file in $(git status -s | egrep "^\ D" | awk '"'"'{print $2}'"'"'); do git rm $file; done'
+alias git_lastrb='git fetch origin && git branch -l --all | grep rb_ | sort -V | tail -n 1 | awk -F/ '"'"'{print $NF}'"'"''
+alias git_rb_patch='BRANCH="rb_$(git_lastrb | awk -F_ '"'"'{print $2}'"'"' | awk -F. '"'"'{print $1"."$2"."$3+1}'"'"')";  git checkout -b "${BRANCH}" && git push origin "${BRANCH}"'
+alias git_rb_minor='BRANCH="rb_$(git_lastrb | awk -F_ '"'"'{print $2}'"'"' | awk -F. '"'"'{print $1"."$2+1".0"}'"'"')";  git checkout -b "${BRANCH}" && git push origin "${BRANCH}"'
+alias git_rb_major='BRANCH="rb_$(git_lastrb | awk -F_ '"'"'{print $2}'"'"' | awk -F. '"'"'{print $1+1".0.0"}'"'"')";  git checkout -b "${BRANCH}" && git push origin "${BRANCH}"'
+alias git_fb='echo "Branch Name:" && read BRANCH_NAME ; BRANCH="fb_${BRANCH_NAME}";  git checkout -b "${BRANCH}" && git push origin "${BRANCH}"'
+alias git_com='git commit --all'
+
