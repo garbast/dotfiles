@@ -82,6 +82,14 @@ cdMfc()
 }
 alias mfc=cdMfc
 
+getWeather()
+{
+	echo "http://wttr.in/$1"
+	curl "http://wttr.in/$1"
+}
+alias wetter=getWeather
+alias weather=getWeather
+
 export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'
 export TODOTXT_DEFAULT_ACTION=ls
 alias t='todo -d /home/sebastian/Dokumente/Shellscripts/todo.cfg'
@@ -102,4 +110,3 @@ alias git_rb_minor='BRANCH="rb_$(git_lastrb | awk -F_ '"'"'{print $2}'"'"' | awk
 alias git_rb_major='BRANCH="rb_$(git_lastrb | awk -F_ '"'"'{print $2}'"'"' | awk -F. '"'"'{print $1+1".0.0"}'"'"')";  git checkout -b "${BRANCH}" && git push origin "${BRANCH}"'
 alias git_fb='echo "Branch Name:" && read BRANCH_NAME ; BRANCH="fb_${BRANCH_NAME}";  git checkout -b "${BRANCH}" && git push origin "${BRANCH}"'
 alias git_com='git commit --all'
-
