@@ -102,11 +102,15 @@ alias svn_tagminor='echo "Commit Message:" && read COMMIT_MESSAGE && svn cp ^/tr
 alias svn_tagmajor='echo "Commit Message:" && read COMMIT_MESSAGE && svn cp ^/trunk ^/tags/"$(svn_lasttag | awk -F. '"'"'{print $1+1".0.0"}'"'"')" -m "${COMMIT_MESSAGE}" && echo "created: $(svn_lasttag)"'
 alias svn_branch='BRANCH_NAME=""; while [ ! -z "$(svn ls ^/branches/${BRANCH_NAME} 2>/dev/null)" ]; do echo "Branch Name:" && read BRANCH_NAME; done ; echo "Commit Message:" && read COMMIT_MESSAGE && svn cp ^/trunk ^/branches/"${BRANCH_NAME}" -m "${COMMIT_MESSAGE}" && svn switch ^/branches/"${BRANCH_NAME}"'
 
-alias git_add='for file in $(git status -s | egrep "^\?\?" | awk '"'"'{print $2}'"'"'); do git add $file; done'
-alias git_del='for file in $(git status -s | egrep "^\ D" | awk '"'"'{print $2}'"'"'); do git rm $file; done'
-alias git_lastrb='git fetch origin && git branch -l --all | grep rb_ | sort -V | tail -n 1 | awk -F/ '"'"'{print $NF}'"'"''
-alias git_rb_patch='BRANCH="rb_$(git_lastrb | awk -F_ '"'"'{print $2}'"'"' | awk -F. '"'"'{print $1"."$2"."$3+1}'"'"')";  git checkout -b "${BRANCH}" && git push origin "${BRANCH}"'
-alias git_rb_minor='BRANCH="rb_$(git_lastrb | awk -F_ '"'"'{print $2}'"'"' | awk -F. '"'"'{print $1"."$2+1".0"}'"'"')";  git checkout -b "${BRANCH}" && git push origin "${BRANCH}"'
-alias git_rb_major='BRANCH="rb_$(git_lastrb | awk -F_ '"'"'{print $2}'"'"' | awk -F. '"'"'{print $1+1".0.0"}'"'"')";  git checkout -b "${BRANCH}" && git push origin "${BRANCH}"'
-alias git_fb='echo "Branch Name:" && read BRANCH_NAME ; BRANCH="fb_${BRANCH_NAME}";  git checkout -b "${BRANCH}" && git push origin "${BRANCH}"'
-alias git_com='git commit --all'
+alias gitffs='echo "Feature Name:" && read BRANCH_NAME ; git flow feature start ${BRANCH_NAME} && git flow feature publish ${BRANCH_NAME}'
+alias gitfff='declare -a LIST=($(i=1; for branch in $(git branch --list | grep -v master | grep -v develop | sed s/\*//); do echo $branch; echo "$(git rev-list -n 1 $branch)";  done)); CHOICE=$(dialog --clear --backtitle "Select your poison" --title "Features to finish" --menu "Choose one of the following options:" 40 100 4 "$LIST[@]" 2>&1 >/dev/tty); test -z $CHOICE || git flow feature finish ${CHOICE/feature\//} && git push --all'
+alias gitfrs_patch='TAG="$(git_lasttag | awk -F. '"'"'{print $1"."$2"."$3+1}'"'"')"; git flow release start "${TAG}" && git flow release finish "${TAG}" && git push --all && git push --tags'
+alias gitfrs_minor='TAG="$(git_lasttag | awk -F. '"'"'{print $1"."$2+1".0"}'"'"')"; git flow release start "${TAG}" && git flow release finish "${TAG}" && git push --all && git push --tags'
+alias gitfrs_major='TAG="$(git_lasttag | awk -F. '"'"'{print $1+1".0.0"}'"'"')"; git flow release start "${TAG}" && git flow release finish "${TAG}" && git push --all && git push --tags'
+alias git_flow_feature_start='gitffs'
+alias git_flow_feature_finish='gitfff'
+alias git_flow_release_start_patch='gitfrs_patch'
+alias git_flow_release_start_minor='gitfrs_minor'
+alias git_flow_release_start_major='gitfrs_major'
+
+alias sf="php ./bin/console"
