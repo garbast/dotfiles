@@ -68,19 +68,12 @@ antigen theme garbast/dotfiles themes/gnzh-v2
 antigen apply
 
 
-# MFC Stuff
-mountMfc()
+# Web Stuff
+cdWeb()
 {
-	mount /media/mfc/$1
-	cd /media/mfc/$1
+	cd /home/www/$1/$2
 }
-alias cdm=mountMfc
-
-cdMfc()
-{
-	cd /home/www/mfc/$1/htdocs
-}
-alias mfc=cdMfc
+alias web=cdWeb
 
 getWeather()
 {
@@ -114,3 +107,8 @@ alias git_flow_release_start_minor='gitfrs_minor'
 alias git_flow_release_start_major='gitfrs_major'
 
 alias sf="php ./bin/console"
+
+export TYPO3_6="/home/www/git_repository/TYPO3_6"
+export TYPO3_7="/home/www/git_repository/TYPO3_7"
+export TYPO3_8="/home/www/git_repository/TYPO3_8"
+export TYPO3_9="/home/www/git_repository/TYPO3_9"

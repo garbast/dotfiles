@@ -64,7 +64,6 @@
 	diff = auto
 	status = auto
 	interactive = auto
-	ui = true
 	pager = true
 	ui = auto
 
@@ -116,3 +115,7 @@
 	showUntrackedFiles = all
 	# Sometimes a newly-added folder, since it's only one line in git status, can slip under the radar.
 	# https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
+[http]
+	sslverify = False
+[url "\"ssh://git@git.evoweb.de/home/git/repositories/\""]
+	pushInsteadOf = https://git.evoweb.de/
