@@ -52,6 +52,7 @@ antigen bundles <<EOBUNDLES
 
 	git
 	svn
+	composer
 
 	sublime
 	ssh-agent
