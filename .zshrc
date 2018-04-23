@@ -68,6 +68,9 @@ antigen theme garbast/dotfiles themes/gnzh-v2
 
 antigen apply
 
+if [ "$TMUX" = "" ]; then
+       SHELL=/usr/bin/zsh tmux;
+fi
 
 # Web Stuff
 cdWeb()
