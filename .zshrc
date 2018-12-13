@@ -70,7 +70,7 @@ antigen theme bhilburn/powerlevel9k powerlevel9k
 antigen apply
 
 if [ "$TMUX" = "" ]; then
-       SHELL=/usr/bin/zsh tmux;
+#       SHELL=/usr/bin/zsh tmux;
 fi
 
 # Web Stuff
