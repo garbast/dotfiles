@@ -36,6 +36,7 @@
 	ciaa = commit -a --amend
 
 	rtags = ls-remote --tags
+	lasttag = describe --abbrev=0
 [commit]
 #	gpgSign = true
 	# "other people can trust that the changes you've made really were made by you"
