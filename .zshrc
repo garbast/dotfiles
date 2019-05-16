@@ -113,7 +113,4 @@ alias git_flow_release_start_major='gitfrs_major'
 
 alias sf="php ./bin/console"
 
-export TYPO3_6="/home/www/git_repository/TYPO3_6"
-export TYPO3_7="/home/www/git_repository/TYPO3_7"
-export TYPO3_8="/home/www/git_repository/TYPO3_8"
-export TYPO3_9="/home/www/git_repository/TYPO3_9"
+alias glog="\git log --color --all --date-order --decorate --dirstat=lines,cumulative --stat | sed 's/\([0-9] file[s]\? .*)$\)/\1\n_______\n-------/g' | \less -R"
