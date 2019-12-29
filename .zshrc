@@ -2,18 +2,11 @@
 export TERM="xterm-256color"
 
 autoload -Uz promptinit
-#promptinit
-#prompt adam1
 
 setopt histignorealldups sharehistory
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
-
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=10000
-SAVEHIST=20000
-HISTFILE=~/.zsh_history
 
 # Use modern completion system
 autoload -Uz compinit
@@ -62,8 +55,6 @@ antigen bundles <<EOBUNDLES
 	zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
 EOBUNDLES
 
-# Install powerline font for agnoster icons
-# http://askubuntu.com/questions/283908/how-can-i-install-and-use-powerline-plugin
 antigen theme romkatv/powerlevel10k powerlevel10k
 
 antigen apply
@@ -73,8 +64,7 @@ if [ "$TMUX" = "" ]; then
 fi
 
 # Web Stuff
-cdWeb()
-{
+function cdWeb() {
 	cd /home/www/$1/$2
 }
 alias web=cdWeb
@@ -87,8 +77,6 @@ alias gitfrs_major='TAG="$(git_lasttag | awk -F. '"'"'{print $1+1".0.0"}'"'"')";
 alias git_flow_release_start_patch='gitfrs_patch'
 alias git_flow_release_start_minor='gitfrs_minor'
 alias git_flow_release_start_major='gitfrs_major'
-
-alias sf="php ./bin/console"
 
 alias glog="\git log --color --all --date-order --decorate --dirstat=lines,cumulative --stat | sed 's/\([0-9] file[s]\? .*)$\)/\1\n_______\n-------/g' | \less -R"
 
