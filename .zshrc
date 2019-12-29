@@ -42,7 +42,6 @@ fpath=($HOME/.dotfile/functions $fpath)
 source ~/.antigen.zsh
 
 DEFAULT_USER=sebastian
-SVN_SHOW_BRANCH="true"
 
 antigen use oh-my-zsh
 
@@ -65,7 +64,7 @@ EOBUNDLES
 
 # Install powerline font for agnoster icons
 # http://askubuntu.com/questions/283908/how-can-i-install-and-use-powerline-plugin
-antigen theme bhilburn/powerlevel9k powerlevel9k
+antigen theme romkatv/powerlevel10k powerlevel10k
 
 antigen apply
 
@@ -80,33 +79,11 @@ cdWeb()
 }
 alias web=cdWeb
 
-getWeather()
-{
-	echo "http://wttr.in/$1"
-	curl "http://wttr.in/$1"
-}
-alias wetter=getWeather
-alias weather=getWeather
-
-export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'
-export TODOTXT_DEFAULT_ACTION=ls
-alias t='todo -d /home/sebastian/Dokumente/Shellscripts/todo.cfg'
-
-alias svn_add='for file in $(svn status | egrep "^\?" | awk '"'"'{print $2}'"'"'); do svn add $file; done'
-alias svn_del='for file in $(svn status | egrep "^\!" | awk '"'"'{print $2}'"'"'); do svn del $file; done'
-alias svn_lasttag='svn ls ^/tags/ | egrep -v "[a-Z+_\-]" | sort -V | tail -n 1 | sed "s/\///g"'
-alias svn_tagpatch='echo "Commit Message:" && read COMMIT_MESSAGE && svn cp ^/trunk ^/tags/"$(svn_lasttag | awk -F. '"'"'{print $1"."$2"."$3+1}'"'"')" -m "${COMMIT_MESSAGE}" && echo "created: $(svn_lasttag)"'
-alias svn_tagminor='echo "Commit Message:" && read COMMIT_MESSAGE && svn cp ^/trunk ^/tags/"$(svn_lasttag | awk -F. '"'"'{print $1"."$2+1".0"}'"'"')" -m "${COMMIT_MESSAGE}" && echo "created: $(svn_lasttag)"'
-alias svn_tagmajor='echo "Commit Message:" && read COMMIT_MESSAGE && svn cp ^/trunk ^/tags/"$(svn_lasttag | awk -F. '"'"'{print $1+1".0.0"}'"'"')" -m "${COMMIT_MESSAGE}" && echo "created: $(svn_lasttag)"'
-alias svn_branch='BRANCH_NAME=""; while [ ! -z "$(svn ls ^/branches/${BRANCH_NAME} 2>/dev/null)" ]; do echo "Branch Name:" && read BRANCH_NAME; done ; echo "Commit Message:" && read COMMIT_MESSAGE && svn cp ^/trunk ^/branches/"${BRANCH_NAME}" -m "${COMMIT_MESSAGE}" && svn switch ^/branches/"${BRANCH_NAME}"'
-
 alias gitffs='echo "Feature Name:" && read BRANCH_NAME ; git flow feature start ${BRANCH_NAME} && git flow feature publish ${BRANCH_NAME}'
 alias gitfff='declare -a LIST=($(i=1; for branch in $(git branch --list | grep -v master | grep -v develop | sed s/\*//); do echo $branch; echo "$(git rev-list -n 1 $branch)";  done)); CHOICE=$(dialog --clear --backtitle "Select your poison" --title "Features to finish" --menu "Choose one of the following options:" 40 100 4 "$LIST[@]" 2>&1 >/dev/tty); test -z $CHOICE || git flow feature finish ${CHOICE/feature\//} && git push --all'
 alias gitfrs_patch='TAG="$(git_lasttag | awk -F. '"'"'{print $1"."$2"."$3+1}'"'"')"; git flow release start "${TAG}" && git flow release finish "${TAG}" && git push --all && git push --tags'
 alias gitfrs_minor='TAG="$(git_lasttag | awk -F. '"'"'{print $1"."$2+1".0"}'"'"')"; git flow release start "${TAG}" && git flow release finish "${TAG}" && git push --all && git push --tags'
 alias gitfrs_major='TAG="$(git_lasttag | awk -F. '"'"'{print $1+1".0.0"}'"'"')"; git flow release start "${TAG}" && git flow release finish "${TAG}" && git push --all && git push --tags'
-alias git_flow_feature_start='gitffs'
-alias git_flow_feature_finish='gitfff'
 alias git_flow_release_start_patch='gitfrs_patch'
 alias git_flow_release_start_minor='gitfrs_minor'
 alias git_flow_release_start_major='gitfrs_major'
@@ -114,3 +91,7 @@ alias git_flow_release_start_major='gitfrs_major'
 alias sf="php ./bin/console"
 
 alias glog="\git log --color --all --date-order --decorate --dirstat=lines,cumulative --stat | sed 's/\([0-9] file[s]\? .*)$\)/\1\n_______\n-------/g' | \less -R"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
