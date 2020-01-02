@@ -1,67 +1,10 @@
-# Set up the prompt
-export TERM="xterm-256color"
+export ZSH="/home/sebastian/.oh-my-zsh"
 
-autoload -Uz promptinit
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
-setopt histignorealldups sharehistory
+plugins=(command-not-found common-aliases composer docker git git-extras git-flow-avh npm rsync ssh-agent)
 
-# Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
-
-# Use modern completion system
-autoload -Uz compinit
-compinit
-
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
-fpath=($HOME/.dotfile/functions $fpath)
-
-source ~/.antigen.zsh
-
-DEFAULT_USER=sebastian
-
-antigen use oh-my-zsh
-
-antigen bundles <<EOBUNDLES
-	command-not-found
-
-	common-aliases
-
-	git
-	svn
-	composer
-
-	sublime
-	ssh-agent
-	rsync
-
-	zsh-users/zsh-syntax-highlighting
-	zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
-EOBUNDLES
-
-antigen theme romkatv/powerlevel10k powerlevel10k
-
-antigen apply
-
-if [ "$TMUX" = "" ]; then
-#       SHELL=/usr/bin/zsh tmux;
-fi
+source $ZSH/oh-my-zsh.sh
 
 # Web Stuff
 function cdWeb() {
@@ -82,4 +25,3 @@ alias glog="\git log --color --all --date-order --decorate --dirstat=lines,cumul
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
