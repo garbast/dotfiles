@@ -23,5 +23,11 @@ alias git_flow_release_start_major='gitfrs_major'
 
 alias glog="\git log --color --all --date-order --decorate --dirstat=lines,cumulative --stat | sed 's/\([0-9] file[s]\? .*)$\)/\1\n_______\n-------/g' | \less -R"
 
+alias composer1='docker run --volume $PWD:/app composer:1 $@'
+alias composer2='docker run --volume $PWD:/app composer:2 $@'
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
