@@ -22,11 +22,14 @@ alias git_flow_release_start_minor='gitfrs_minor'
 alias git_flow_release_start_major='gitfrs_major'
 
 alias glog="\git log --color --all --date-order --decorate --dirstat=lines,cumulative --stat | sed 's/\([0-9] file[s]\? .*)$\)/\1\n_______\n-------/g' | \less -R"
+alias gpa="git remote prune origin && git push --all"
 
-alias composer1='docker run --volume $PWD:/app composer:1 $@'
+alias composer1='docker run --volume $PWD:/app composer:1.10.19 $@'
 alias composer2='docker run --volume $PWD:/app composer:2 $@'
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.npm-global/bin:$PATH"
+
+NPM_CONFIG_PREFIX=~/.npm-global
 
 # run docker container and source shell commands
 alias t3docrun='source <(docker run --rm t3docs/render-documentation show-shell-commands)'
