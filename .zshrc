@@ -24,8 +24,7 @@ alias git_flow_release_start_major='gitfrs_major'
 alias glog="\git log --color --all --date-order --decorate --dirstat=lines,cumulative --stat | sed 's/\([0-9] file[s]\? .*)$\)/\1\n_______\n-------/g' | \less -R"
 alias gpa="git remote prune origin && git push --all"
 
-alias composer1='docker run --volume $PWD:/app composer:1.10.19 $@'
-alias composer2='docker run --volume $PWD:/app composer:2 $@'
+alias composer='mkdir -p $HOME/.config/composer && mkdir -p $HOME/.cache/composer  && docker run --user $(id -u):$(id -g) --env COMPOSER_HOME=/config --env COMPOSER_CACHE_DIR=/cache --volume $HOME/.config/composer:/config --volume $HOME/.cache/composer:/cache --volume $PWD:/app composer:latest $@'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.npm-global/bin:$PATH"
 
