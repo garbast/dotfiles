@@ -22,9 +22,12 @@ function composer() {
         --user $(id -u):33 \
         --env COMPOSER_HOME=/config \
         --env COMPOSER_CACHE_DIR=/cache \
+	--volume /etc/passwd:/etc/passwd:ro \
+	--volume $HOME/:$HOME/ \
         --volume $HOME/.config/composer:/config \
         --volume $HOME/.cache/composer:/cache \
-        --volume $PWD:/app composer:latest $@
+        --volume $PWD:/app \
+        evoweb/php:composer $@
 }
 alias composer=composer
 
