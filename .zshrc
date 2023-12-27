@@ -22,6 +22,7 @@ function composer() {
         --user $(id -u):33 \
         --env COMPOSER_HOME=/config \
         --env COMPOSER_CACHE_DIR=/cache \
+	--network db \
 	--volume /etc/passwd:/etc/passwd:ro \
 	--volume $HOME/:$HOME/ \
         --volume $HOME/.config/composer:/config \
