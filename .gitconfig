@@ -1,6 +1,6 @@
 [user]
-	name =
-	email =
+	name = Sebastian Fischer
+	email = typo3@evoweb.de
 	#signingkey =
 
 [alias]
@@ -38,13 +38,10 @@
 	rtags = ls-remote --tags
 	lasttag = describe --abbrev=0
 [commit]
-#	gpgSign = true
+	#	gpgSign = true
 	# "other people can trust that the changes you've made really were made by you"
 	# https://help.github.com/articles/about-gpg/
 	# https://git-scm.com/docs/git-config#git-config-commitgpgSign
-
-[url "ssh://sfischer@review.typo3.org:29418"]
-	pushInsteadOf = git://git.typo3.org
 
 [branch]
 	autosetuprebase = remote
@@ -118,5 +115,4 @@
 	# https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
 [http]
 	sslverify = False
-[url "\"ssh://git@git.evoweb.de/home/git/repositories/\""]
-	pushInsteadOf = https://git.evoweb.de/
+

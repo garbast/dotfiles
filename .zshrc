@@ -22,19 +22,24 @@ function composer() {
         --user $(id -u):33 \
         --env COMPOSER_HOME=/config \
         --env COMPOSER_CACHE_DIR=/cache \
-        --network db \
-        --volume /etc/passwd:/etc/passwd:ro \
-        --volume $HOME/:$HOME/ \
+	--env SSH_AUTH_SOCK=/ssh-agent \
+	--network db \
+	--volume $(readlink -f $SSH_AUTH_SOCK):/ssh-agent \
+	--volume /etc/passwd:/etc/passwd:ro \
+	--volume $HOME/:$HOME/ \
         --volume $HOME/.config/composer:/config \
         --volume $HOME/.cache/composer:/cache \
         --volume $PWD:/app \
-        --volume /home/www/AdditionalConfiguration.php:/AdditionalConfiguration.php \
+	--volume /home/www/AdditionalConfiguration.php:/AdditionalConfiguration.php \
         evoweb/php:composer $@
 }
 alias composer=composer
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.npm-global/bin:$PATH"
 
-NPM_CONFIG_PREFIX=~/.npm-global
-
 source /home/.dotfiles/t3doc.sh
+
+unset NPM_CONFIG_PREFIX
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
