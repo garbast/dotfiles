@@ -1,7 +1,6 @@
 [user]
-	name = Sebastian Fischer
-	email = typo3@evoweb.de
-	#signingkey =
+	name =
+	email =
 
 [alias]
 	prune = fetch --prune
@@ -16,46 +15,22 @@
 	# We wanna grab those pesky un-added files!
 	# https://git-scm.com/docs/git-stash
 
-	glog = log --graph --decorate --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	graph = log --graph --decorate --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	# No need for a GUI - a nice, colorful, graphical representation
 	# https://git-scm.com/docs/git-log
 	# via https://medium.com/@payload.dd/thanks-for-the-git-st-i-will-use-this-4da5839a21a4
 
-	st = status
-	ci = commit
-	br = branch
-	co = checkout
-	df = diff
-	fa = fetch --all
-	lg = log -p
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	ls = ls-files
-	rs = reset --hard origin/master
-	showme = show --pretty="format:" --name-only
-	ciaa = commit -a --amend
-
-	rtags = ls-remote --tags
-	lasttag = describe --abbrev=0
-[commit]
-	#	gpgSign = true
-	# "other people can trust that the changes you've made really were made by you"
-	# https://help.github.com/articles/about-gpg/
-	# https://git-scm.com/docs/git-config#git-config-commitgpgSign
+[apply]
+	whitespace = fix
 
 [branch]
 	autosetuprebase = remote
+    sort = -authordate
 
 [branch "main"]
 	remote = origin
 	merge = refs/heads/main
 	rebase = true
-
-[credential]
-	helper = cache
-
-[rerere]
-	enabled = 1
 
 [color]
 	branch = auto
@@ -91,13 +66,41 @@
 [core]
 	pager = less -FRSX
 	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	excludesfile = /home/sebastian/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	editor = vim
 	fileMode = false
 	autocrlf = input
 
-[apply]
-	whitespace = fix
+[credential]
+	helper = cache
+
+[diff]
+	tool = vimdiff
+
+[difftool]
+	prompt = false
+
+[fetch]
+    prune = true
+
+[http]
+	sslverify = False
+
+[include]
+	path = ~/.gitconfig_override
+
+[init]
+    defaultBranch = main
+
+[merge]
+	tool = vimdiff
+	conflictStyle = zdiff3
+
+[mergetool]
+	prompt = false
+
+[pull]
+	rebase = false
 
 [push]
 	default = simple
@@ -109,15 +112,10 @@
 	# Because I get sick of telling git to do it manually
 	# https://git-scm.com/docs/git-config#git-config-pushfollowTags
 
+[rerere]
+	enabled = 1
+
 [status]
 	showUntrackedFiles = all
 	# Sometimes a newly-added folder, since it's only one line in git status, can slip under the radar.
 	# https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
-[http]
-	sslverify = False
-[init]
-        defaultBranch = main
-[maintenance]
-        repo = /Users/fischese/Documents/ista-internet
-[fetch]
-        prune = true

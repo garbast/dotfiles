@@ -1,5 +1,9 @@
 all:
-    stow --verbose --target=$$HOME --restow */
+	stow --target=$$HOME git
+	stow --target=$$HOME vim
+	stow --target=$$HOME zsh
 
 delete:
-    stow --verbose --target=$$HOME --delete */
+	stow --target=$$HOME --delete git
+	stow --target=$$HOME --delete vim
+	stow --target=$$HOME --delete zsh
