@@ -1,121 +1,121 @@
 [user]
-	name =
-	email =
+    name =
+    email =
 
 [alias]
-	prune = fetch --prune
-	# Because I constantly forget how to do this
-	# https://git-scm.com/docs/git-fetch#git-fetch--p
+    prune = fetch --prune
+    # Because I constantly forget how to do this
+    # https://git-scm.com/docs/git-fetch#git-fetch--p
 
-	undo = reset --soft HEAD^
-	# Not quite as common as an amend, but still common
-	# https://git-scm.com/docs/git-reset#git-reset-emgitresetemltmodegtltcommitgt
+    undo = reset --soft HEAD^
+    # Not quite as common as an amend, but still common
+    # https://git-scm.com/docs/git-reset#git-reset-emgitresetemltmodegtltcommitgt
 
-	stash-all = stash save --include-untracked
-	# We wanna grab those pesky un-added files!
-	# https://git-scm.com/docs/git-stash
+    stash-all = stash save --include-untracked
+    # We wanna grab those pesky un-added files!
+    # https://git-scm.com/docs/git-stash
 
-	graph = log --graph --decorate --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-	# No need for a GUI - a nice, colorful, graphical representation
-	# https://git-scm.com/docs/git-log
-	# via https://medium.com/@payload.dd/thanks-for-the-git-st-i-will-use-this-4da5839a21a4
+    graph = log --graph --decorate --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    # No need for a GUI - a nice, colorful, graphical representation
+    # https://git-scm.com/docs/git-log
+    # via https://medium.com/@payload.dd/thanks-for-the-git-st-i-will-use-this-4da5839a21a4
 
 [apply]
-	whitespace = fix
+    whitespace = fix
 
 [branch]
-	autosetuprebase = remote
+    autosetuprebase = remote
     sort = -authordate
 
 [branch "main"]
-	remote = origin
-	merge = refs/heads/main
-	rebase = true
+    remote = origin
+    merge = refs/heads/main
+    rebase = true
 
 [color]
-	branch = auto
-	diff = auto
-	status = auto
-	interactive = auto
-	pager = true
-	ui = auto
+    branch = auto
+    diff = auto
+    status = auto
+    interactive = auto
+    pager = true
+    ui = auto
 
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+    current = yellow reverse
+    local = yellow
+    remote = green
 
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
 
 [color "diff-highlight"]
-	oldNormal = "red bold"
-	oldHighlight = "red bold 52"
-	newNormal = "green bold"
-	newHighlight = "green bold 22"
+    oldNormal = "red bold"
+    oldHighlight = "red bold 52"
+    newNormal = "green bold"
+    newHighlight = "green bold 22"
 
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+    added = yellow
+    changed = green
+    untracked = cyan
 
 [core]
-	pager = less -FRSX
-	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	excludesfile = ~/.gitignore_global
-	editor = vim
-	fileMode = false
-	autocrlf = input
+    pager = less -FRSX
+    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    excludesfile = ~/.gitignore_global
+    editor = vim
+    fileMode = false
+    autocrlf = input
 
 [credential]
-	helper = cache
+    helper = cache
 
 [diff]
-	tool = vimdiff
+    tool = vimdiff
 
 [difftool]
-	prompt = false
+    prompt = false
 
 [fetch]
     prune = true
 
 [http]
-	sslverify = False
+    sslverify = False
 
 [include]
-	path = ~/.gitconfig_override
+    path = ~/.gitconfig_override
 
 [init]
     defaultBranch = main
 
 [merge]
-	tool = vimdiff
-	conflictStyle = zdiff3
+    tool = vimdiff
+    # conflictStyle = zdiff3
 
 [mergetool]
-	prompt = false
+    prompt = false
 
 [pull]
-	rebase = false
+    rebase = false
 
 [push]
-	default = simple
-	# "push the current branch back to the branch whose changes are usually integrated into the current branch"
-	# "refuse to push if the upstream branch’s name is different from the local one"
-	# https://git-scm.com/docs/git-config#git-config-pushdefault
+    default = simple
+    # "push the current branch back to the branch whose changes are usually integrated into the current branch"
+    # "refuse to push if the upstream branch’s name is different from the local one"
+    # https://git-scm.com/docs/git-config#git-config-pushdefault
 
-	followTags = true
-	# Because I get sick of telling git to do it manually
-	# https://git-scm.com/docs/git-config#git-config-pushfollowTags
+    followTags = true
+    # Because I get sick of telling git to do it manually
+    # https://git-scm.com/docs/git-config#git-config-pushfollowTags
 
 [rerere]
-	enabled = 1
+    enabled = 1
 
 [status]
-	showUntrackedFiles = all
-	# Sometimes a newly-added folder, since it's only one line in git status, can slip under the radar.
-	# https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
+    showUntrackedFiles = all
+    # Sometimes a newly-added folder, since it's only one line in git status, can slip under the radar.
+    # https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
