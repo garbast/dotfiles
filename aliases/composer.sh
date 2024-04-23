@@ -12,7 +12,7 @@ function composer() {
     --volume "${HOME}":"${HOME}" \
     --volume "${HOME}/.config/composer":/config \
     --volume "${HOME}/.cache/composer":/cache \
-    --volume "${HOME}":/app \
+    --volume "${PWD}":/app \
     --volume /home/www/AdditionalConfiguration.php:/AdditionalConfiguration.php \
     evoweb/php:composer $@
 }
