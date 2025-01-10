@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # apt
-sudo apt install zsh vim neovim git git-flow make curl cifs-utils ca-certificates curl thunderbird hibiscus vlc gimp filezilla solaar libreoffice libreoffice-l10n-de libreoffice-help-de darktable stow
+sudo apt install zsh vim neovim git git-flow make curl cifs-utils ca-certificates curl thunderbird hibiscus vlc gimp filezilla solaar libreoffice libreoffice-l10n-de libreoffice-help-de darktable stow flatpak gnome-software-plugin-flatpak
 
 echo "solaar works after a reboot"
 
@@ -40,8 +40,10 @@ sudo apt install libminizip1 gdebi-core
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb -P /tmp
 sudo apt install /tmp/teamviewer_amd64.deb
 
-# snap
-sudo snap install skype
+# flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+sudo flatpak install flathub com.skype.Client
 
 # manually
 sudo apt install libfuse2

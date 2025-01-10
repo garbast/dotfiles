@@ -27,10 +27,20 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 if [ -d "$HOME/.composer/vendor/bin" ] ; then
-	PATH="$HOME/.composer/vendor/bin:$PATH"
+	export PATH="$HOME/.composer/vendor/bin:$PATH"
+fi
+
+# Added for flatpak
+if [ -d "/var/lib/flatpak/exports/share" ] ; then
+    export PATH="/var/lib/flatpak/exports/share:$PATH"
+    export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$XDG_DATA_DIRS"
+fi
+if [ -d "/home/sebastian/.local/share/flatpak/exports/share" ] ; then
+    export PATH="/home/sebastian/.local/share/flatpak/exports/share:$PATH"
+    export XDG_DATA_DIRS="/home/sebastian/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"
 fi
 
 # Added by Toolbox App
 if [ -d "$HOME/.composer/vendor/bin" ] ; then
-    PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
+    export PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
 fi
