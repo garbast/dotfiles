@@ -23,17 +23,17 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
 
 unset NPM_CONFIG_PREFIX
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH="$HOME/.local/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.npm-global/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$PATH"
 
 # import aliases
-for script in $HOME/dotfiles/aliases/*.sh; do source $script; done
+[ -d /home/dotfiles/aliases ] && for script in /home/dotfiles/aliases/*.sh; do source $script; done
 
-# To customize prompt, run `p10k configure` or edit ~/dotfiles/zsh/.p10k.zsh.
-[[ ! -f ~/dotfiles/zsh/.p10k.zsh ]] || source ~/dotfiles/zsh/.p10k.zsh
+# To customize prompt, run `p10k configure` or edit /home/dotfiles/zsh/.p10k.zsh.
+[ -f /home/dotfiles/zsh/.p10k.zsh ] && source /home/dotfiles/zsh/.p10k.zsh

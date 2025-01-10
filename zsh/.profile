@@ -8,8 +8,6 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-export IBUS_ENABLE_SYNC_MODE=1
-
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -23,19 +21,16 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-if [ -d "$HOME/.composer" ] ; then
-    PATH="$HOME/.composer/vendor/bin:$PATH"
-fi
-
-if [ -d "$HOME/Dokumente/Shellscripts" ] ; then
-	PATH="$PATH:$HOME/Dokumente/Shellscripts"
-fi
-
-if [ -d "$HOME/.composer/vendor/bin" ] ; then
-	PATH="$PATH:$HOME/.composer/vendor/bin"
-fi
-
-if [ -d "$HOME/.local/bin" ]; then
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/.composer/vendor/bin" ] ; then
+	PATH="$HOME/.composer/vendor/bin:$PATH"
+fi
+
+# Added by Toolbox App
+if [ -d "$HOME/.composer/vendor/bin" ] ; then
+    PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
+fi
