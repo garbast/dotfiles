@@ -112,6 +112,9 @@
     # Because I get sick of telling git to do it manually
     # https://git-scm.com/docs/git-config#git-config-pushfollowTags
 
+    autoSetupRemote = true
+    # Allow pushing branches that has no upstream branch
+
 [rerere]
     enabled = 1
 
